@@ -16,7 +16,7 @@ var connection = mysql.createConnection({
 	host: process.env.HOSTNAME,
 	user: process.env.USERNAME,
 	password: process.env.PASSWORD,
-	database: process.env.DATABASENAME
+	database: process.env.DATABASE
 });
 connection.connect();
 connection.query('SELECT * FROM articles LIMIT 1', function (err, rows, fields) {
