@@ -7,10 +7,6 @@ app.get('/', function(req, res) {
 
 var port = process.env.PORT || 5000;
 
-app.listen(port, function () {
-	console.log("Listening on " + port);
-});
-
 var mysql = require('mysql');
 var connection = mysql.createConnection({
 	host: process.env.HOSTNAME,
@@ -19,8 +15,16 @@ var connection = mysql.createConnection({
 	database: process.env.DATABASE
 });
 connection.connect();
-connection.query('SELECT * FROM articles LIMIT 1', function (err, rows, fields) {
-	if(err) throw err;
-	console.log(rows);
+
+/**
+* Main APP
+*/
+app.listen(port, function () {
+	connection.query('SELECT * FROM articles LIMIT 1', function (err, rows, fields) {
+		if(err) throw err;
+		res.send(rows[0].title + '<br />');
+	});
 });
+
+
 connection.end();
