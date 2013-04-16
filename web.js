@@ -2,7 +2,11 @@ var express = require("express");
 var app = express();
 
 app.get('/', function(req, res) {
-	res.send('Testing');
+	connection.query('SELECT * FROM articles LIMIT 1', function (err, rows, fields) {
+		if(err) throw err;
+		res.send(rows[0].title + '<br />');
+	});
+
 })
 
 var port = process.env.PORT || 5000;
@@ -20,10 +24,6 @@ connection.connect();
 * Main APP
 */
 app.listen(port, function () {
-	connection.query('SELECT * FROM articles LIMIT 1', function (err, rows, fields) {
-		if(err) throw err;
-		res.send(rows[0].title + '<br />');
-	});
 });
 
 
