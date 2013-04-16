@@ -15,7 +15,8 @@ var mysql = require('mysql');
 var connection = mysql.createConnection({
 	host: HOSTNAME,
 	user: USERNAME,
-	password: PASSWORD
+	password: PASSWORD,
+	database: DATABASENAME
 });
 connection.connect();
 connection.query('SELECT * FROM articles LIMIT 1', function (err, rows, fields) {
