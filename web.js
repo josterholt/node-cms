@@ -27,4 +27,8 @@ app.listen(port, function () {
 });
 
 
-connection.end();
+process.on('SIGTERM', function () {
+	console.log('CLosing app');
+	connection.end();
+	app.close();
+})
