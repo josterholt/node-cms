@@ -13,10 +13,10 @@ app.listen(port, function () {
 
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-	host: HOSTNAME,
-	user: USERNAME,
-	password: PASSWORD,
-	database: DATABASENAME
+	host: process.env.HOSTNAME,
+	user: process.env.USERNAME,
+	password: process.env.PASSWORD,
+	database: process.env.DATABASENAME
 });
 connection.connect();
 connection.query('SELECT * FROM articles LIMIT 1', function (err, rows, fields) {
