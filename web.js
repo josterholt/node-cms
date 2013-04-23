@@ -1,8 +1,9 @@
-var express = require('../..');
+var express = require('express');
 var port = process.env.PORT || 5000;
 var app = module.exports = express();
 
 // mysql
+/*
 var mysql = require('mysql');
 var connection = mysql.createConnection({
 	host: process.env.HOSTNAME,
@@ -16,6 +17,7 @@ process.on('SIGTERM', function () {
 	console.log('CLosing app');
 	//connection.end();
 })
+*/
 
 // settings
 
