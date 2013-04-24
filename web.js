@@ -29,7 +29,7 @@ app.use(orm.express("mysql:" + process.env.USERNAME + ":" + process.env.PASSWORD
             body: String
         });
     }
-})
+}));
 
 // settings
 
