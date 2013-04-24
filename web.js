@@ -18,6 +18,17 @@ process.on('SIGTERM', function () {
 	//connection.end();
 })
 */
+var orm = require("orm");
+orm.connect("mysql:" + process.env.USERNAME + ":" + process.env.PASSWORD + "@" + process.env.HOSTNAME + "/" + process.env.DATABASE, function (err, db) {
+    if(err) throw err;
+})
+
+var Article = db.define("article", {
+  title: String,
+  pub_date: Number,
+  published: Boolean,
+  body: String
+});
 
 // settings
 
@@ -105,5 +116,5 @@ app.use(function(req, res, next){
 
 if (!module.parent) {
   app.listen(port);
-  console.log('\n  listening on port 3000\n');
+  console.log('\n  listening on port ' + port + '\n');
 }
