@@ -104,6 +104,6 @@ app.use(function(req, res, next){
 });
 
 if (!module.parent) {
-  app.listen(3000);
+  app.listen(port);
   console.log('\n  listening on port 3000\n');
 }
