@@ -19,16 +19,17 @@ process.on('SIGTERM', function () {
 })
 */
 var orm = require("orm");
-orm.connect("mysql:" + process.env.USERNAME + ":" + process.env.PASSWORD + "@" + process.env.HOSTNAME + "/" + process.env.DATABASE, function (err, db) {
-    if(err) throw err;
-})
 
-var Article = db.define("article", {
-  title: String,
-  pub_date: Number,
-  published: Boolean,
-  body: String
-});
+app.use(orm.express("mysql:" + process.env.USERNAME + ":" + process.env.PASSWORD + "@" + process.env.HOSTNAME + "/" + process.env.DATABASE, {
+    define: function (db, models) {
+        models.article = db.define("article", {
+            title: String,
+            pub_date: Number,
+            published: Boolean,
+            body: String
+        });
+    }
+})
 
 // settings
 
