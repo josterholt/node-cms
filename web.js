@@ -18,14 +18,26 @@ process.on('SIGTERM', function () {
 	//connection.end();
 })
 */
+var orm = require("orm");
+
+app.use(orm.express("mysql:" + process.env.USERNAME + ":" + process.env.PASSWORD + "@" + process.env.HOSTNAME + "/" + process.env.DATABASE, {
+    define: function (db, models) {
+        models.article = db.define("article", {
+            title: String,
+            pub_date: Number,
+            published: Boolean,
+            body: String
+        });
+    }
+}));
 
 // settings
 
 // map .renderFile to ".html" files
-app.engine('html', require('ejs').renderFile);
+//app.engine('html', require('ejs').renderFile);
 
 // make ".html" the default
-app.set('view engine', 'html');
+app.set('view engine', 'jade');
 
 // set views for error and 404 pages
 app.set('views', __dirname + '/views');
@@ -104,6 +116,6 @@ app.use(function(req, res, next){
 });
 
 if (!module.parent) {
-  app.listen(3000);
-  console.log('\n  listening on port 3000\n');
+  app.listen(port);
+  console.log('\n  listening on port ' + port + '\n');
 }
