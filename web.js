@@ -3,7 +3,7 @@ var port = process.env.PORT || 5000;
 var app = module.exports = express();
 
 // mysql
-/*
+
 var mysql = require('mysql');
 var connection = mysql.createConnection({
 	host: process.env.HOSTNAME,
@@ -17,7 +17,8 @@ process.on('SIGTERM', function () {
 	console.log('CLosing app');
 	//connection.end();
 })
-*/
+
+/*
 var orm = require("orm");
 
 app.use(orm.express("mysql:" + process.env.USERNAME + ":" + process.env.PASSWORD + "@" + process.env.HOSTNAME + "/" + process.env.DATABASE, {
@@ -30,6 +31,7 @@ app.use(orm.express("mysql:" + process.env.USERNAME + ":" + process.env.PASSWORD
         });
     }
 }));
+*/
 
 // settings
 

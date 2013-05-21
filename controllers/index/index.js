@@ -1,5 +1,11 @@
 exports.index = function(req, res) {
+	console.log('testing');
 	res.render('list', { 
-		articles: req.models.article.find()
+			foo: 'testing',
+			articles: [
+				{ 
+					title: 'Test 1'
+				}
+			]
 	});
 }
